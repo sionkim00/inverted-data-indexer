@@ -7,7 +7,7 @@ func (i Index) Add(docs []document) {
 		for _, token := range analyze(doc.Text) {
 			ids := i[token]
 
-			if ids != nil && i[len(ids)-1] == doc.ID {
+			if ids != nil && ids[len(ids)-1] == doc.ID {
 				// Ignore duplicate ID
 				continue
 			}
