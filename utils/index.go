@@ -34,3 +34,27 @@ func (i Index) Search(text string) []int {
 
 	return r
 }
+
+func Intersection(a []int, b []int) []int {
+	maxLen := len(a)
+	if len(b) > maxLen {
+		maxLen = len(b)
+	}
+
+	r := make([]int, 0, maxLen)
+
+	var i, j int
+	for i < len(a) && j < len(b) {
+		if a[i] < b[j] {
+			i++
+		} else if a[i] > b[j] {
+			j++
+		} else {
+			r = append(r, a[i])
+			i++
+			j++
+		}
+	}
+
+	return r
+}
