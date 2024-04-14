@@ -4,6 +4,8 @@ import (
 	"flag"
 	"log"
 	"time"
+
+	utils "github.com/sionkim00/inverted-text-indexer/utils"
 )
 
 func main() {
