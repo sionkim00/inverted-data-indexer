@@ -22,3 +22,6 @@ go.work
 
 # Data
 data
+
+# Mac
+.DS_Store
