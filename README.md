@@ -1,5 +1,7 @@
 # Inverted Data Indexer
 
+<img  src="https://github.com/sionkim00/inverted-data-indexer/blob/main/images/1.jpg?raw=true"  width="400"  height="200"  alt="logo">
+
 This project is an implementation of an inverted data indexer using Go.
 
 It allows you to index a collection of documents and perform efficient text searches on the indexed data.
@@ -14,9 +16,9 @@ The inverted index is a data structure used to store mapping from content keywor
 
 It is significantly faster than straightforward string matching, especially as data scales.
 
-This is because while a string matcher would need to scan every document for every query, an inverted index stores references to the documents containing each word, allowing for quicker lookups.
+## Transforming Documents Into HashMap
 
-## How Inverted Index Works
+<img  src="https://github.com/sionkim00/inverted-data-indexer/blob/main/images/2.jpg?raw=true"  width="400"  height="200"  alt="logo">
 
 Given a set of documents, such as `{1: "a monkey on a tree eating banana", 2: "He is eating banana"}`, the inverted index transforms this into a structure like `{"a":[1], "monkey": [1], "banana": [1, 2], etc...}`.
 
@@ -29,7 +31,23 @@ The sequence of operations to create an inverted index is as follows:
 3.  **Filtering**: Apply filters such as converting to lowercase, removing stop-words, and stemming to standardize the tokens.
 4.  **Adding to Index**: Each word is added to the index with the document IDs where it appears.
 
-## Time and Space Complexity
+## How We Use Our Index to Search
+
+<img  src="https://github.com/sionkim00/inverted-data-indexer/blob/main/images/3.jpg?raw=true"  width="400"  height="200"  alt="logo">
+
+To find documents relevant to a search query, the index is queried for each term in the search string.
+
+Document IDs are retrieved and then combined using an intersection function to find common documents containing all the terms.
+
+## Features
+
+- **Data Indexing**: The indexer can efficiently index a large collection of documents by creating an inverted index data structure.
+- **Text Search**: Once the data is indexed, you can perform text searches to retrieve relevant document IDs that contain the specified query terms.
+- **Tokenization**: The indexer tokenizes the text data by breaking it down into individual words or terms.
+- **Stop-word Removal**: Common stop-words (e.g., "the", "and", "a") are removed from the tokenized text to improve search accuracy and reduce index size.
+- **Stemming**: Words are stemmed to their root form (e.g., "running" and "ran" are stemmed to "run") to improve search recall.
+
+## Time & Space Complexity
 
 ### Time Complexity
 
@@ -46,20 +64,6 @@ The sequence of operations to create an inverted index is as follows:
 1. **Index Storage:**
 
 - The space complexity is **O(T\*d)**, where T is the number of unique tokens and d is the average number of document references per token.
-
-## How We Use Our Index to Search
-
-To find documents relevant to a search query, the index is queried for each term in the search string.
-
-Document IDs are retrieved and then combined using an intersection function to find common documents containing all the terms.
-
-## Features
-
-- **Data Indexing**: The indexer can efficiently index a large collection of documents by creating an inverted index data structure.
-- **Text Search**: Once the data is indexed, you can perform text searches to retrieve relevant document IDs that contain the specified query terms.
-- **Tokenization**: The indexer tokenizes the text data by breaking it down into individual words or terms.
-- **Stop-word Removal**: Common stop-words (e.g., "the", "and", "a") are removed from the tokenized text to improve search accuracy and reduce index size.
-- **Stemming**: Words are stemmed to their root form (e.g., "running" and "ran" are stemmed to "run") to improve search recall.
 
 ## Usage
 
